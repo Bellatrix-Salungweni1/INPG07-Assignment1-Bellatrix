@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row gy-5">
                 <div class="col-lg-4 order-2 d-flex flex-column justify-content-center text-center">
-                    <h2 style="color: #E7F6F2;" id="text-nama">Bellatrix Salungwen</h2>
+                    <h2 style="color: #E7F6F2;" id="text-nama">Bellatrix Salungweni</h2>
                     <p class="fw-light" style="color: #E7F6F2;" id="text-role">Front End Designer</p>
                     <button id="test-button" class="btn " style="background-color: #256D85; color: #F9F5EB;">Edit</button>
                     <br ⁄>
@@ -28,7 +28,7 @@
                     <button type="button" id="resetbtn"  style=" color:#F9F5EB; background-color: #2C3333;" class="btn">Reset</button>
                 </div>
                 <div class="col-lg-4 order-lg-5 text-center" style="height: 350px;">
-                    <img src="images\Logo.png" class="img-fluid mt-5" id="image" style="width: 250px;" alt="" data-aos="zoom-out" data-aos-delay="100">
+                    <img src="./images/Logo.png" class="img-fluid mt-5" id="image" style="width: 250px;" alt="" data-aos="zoom-out" data-aos-delay="100">
                   </div>
                 <div class="col-lg-4 order-5 order-lg-6 d-flex flex-column justify-content-center text-center" style="color: #E7F6F2;">
                     <p class="fw-bold m-0">Availability</p>
@@ -70,13 +70,13 @@
     </section>
 
     <script>
-        function konfirmasi(){
-        if(window.alert("Apakah data sudah di-isi dengan benar?"))
-            return true}
-
-       
-            
-
+        var innitNama = 'Bellatrix Salungweni'
+        var innitRole = 'Front End Designer'
+        var innitAvailability = 'Full Time'
+        var innitUmur = '19'
+        var innitLokasi = 'Manado, Indonesia'
+        var innitPengalaman = '2'
+        var innitEmail = 'bellatrixsalungweni106@student.unsrat.ac.id'
         var textNama = document.getElementById('text-nama')
         var textRole = document.getElementById('text-role')
         var textAvailability = document.getElementById('text-availability')
@@ -84,7 +84,41 @@
         var textLokasi = document.getElementById('text-lokasi')
         var textPengalaman = document.getElementById('text-pengalaman')
         var textEmail = document.getElementById('text-email')
+        if (localStorage.getItem('ls_nama')) {
+            textNama.innerText = localStorage.getItem('ls_nama')
+        }else {
+            textNama.innerText = innitNama}
         
+        if (localStorage.getItem('ls_role')) {
+            textRole.innerText = localStorage.getItem('ls_role')
+        }else {
+            textAvailability.innerText = innitRole}
+        
+        if (localStorage.getItem('ls_availability')) {
+            textAvailability.innerText = localStorage.getItem('ls_availability')
+        }else {
+            textAvailability.innerText = innitAvailability}
+
+        if (localStorage.getItem('ls_umur')) {
+            textUmur.innerText = localStorage.getItem('ls_umur')
+        }else {
+            textUmur.innerText = innitUmur}
+        
+        if (localStorage.getItem('ls_lokasi')) {
+            textLokasi.innerText = localStorage.getItem('ls_lokasi')
+        }else {
+            textLokasi.innerText = innitLokasi}
+
+        if (localStorage.getItem('ls_pengalaman')) {
+            textPengalaman.innerText = localStorage.getItem('ls_pengalaman')
+        }else {
+            textPengalaman.innerText = innitPengalaman}
+        
+        if (localStorage.getItem('ls_email')) {
+            textEmail.innerText = localStorage.getItem('ls_email')
+        }else {
+            textEmail.innerText = innitEmail}
+
         document.getElementById('input-nama').value = textNama.innerText
         document.getElementById('input-role').value = textRole.innerText
         document.getElementById('input-availability').value = textAvailability.innerText
@@ -93,8 +127,20 @@
         document.getElementById('input-pengalaman').value = textPengalaman.innerText
         document.getElementById('input-email').value = textEmail.innerText
         
-
+        const buttonTest = document.getElementById('test-button')
+        buttonTest.addEventListener('click', function (){
+            const text1 = document.getElementById('form-nama')
+            const display = text1.style.display
+            if (display == 'block') {
+                text1.style.display = 'none'
+            } else {
+                text1.style.display = 'block'
+            }
+        })
+    
         function handleSubmit(event) {
+            var confirmText = confirm('apakah data yang diisi sudah benar?')
+            if (confirmText == true){
             var inputNama = document.getElementById('input-nama')
             var inputRole = document.getElementById('input-role')
             var inputAvailability = document.getElementById('input-availability')
@@ -116,6 +162,8 @@
             document.getElementById('text-lokasi').innerText = localStorage.getItem('ls_lokasi')
             document.getElementById('text-pengalaman').innerText = localStorage.getItem('ls_pengalaman')
             document.getElementById('text-email').innerText = localStorage.getItem('ls_email')
+            }
+            
             const text1 = document.getElementById('form-nama')
             const display = text1.style.display
             if (display == 'block') {
@@ -126,19 +174,18 @@
             event.preventDefault()
         }
 
-        const buttonTest = document.getElementById('test-button')
-        buttonTest.addEventListener('click', function (){
-            const text1 = document.getElementById('form-nama')
-            const display = text1.style.display
-            if (display == 'block') {
-                text1.style.display = 'none'
-            } else {
-                text1.style.display = 'block'
-            }
-        })
 
         const resetbtn = document.getElementById("resetbtn");
         resetbtn.onclick = function () {
-        localStorage.clear();};
+        localStorage.clear()
+            document.getElementById('text-nama').innerText = innitNama
+            document.getElementById('text-role').innerText = innitRole
+            document.getElementById('text-availability').innerText = innitAvailability
+            document.getElementById('text-umur').innerText = innitUmur
+            document.getElementById('text-lokasi').innerText = innitLokasi
+            document.getElementById('text-pengalaman').innerText = innitPengalaman
+            document.getElementById('text-email').innerText = innitEmail
+            
+    }
     </script>
 </body>
